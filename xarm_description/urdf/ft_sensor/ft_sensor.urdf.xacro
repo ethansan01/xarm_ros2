@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="ft_sensor_urdf" params="prefix:=''">
+
+    <!-- define property -->
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    
+    <link name="${prefix}link_ft_sensor">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.54156" />
+        <inertia
+          ixx="0.00047106" ixy="3.9292E-07" ixz="2.6537E-06"
+          iyy="0.00033072" iyz="-1.0975E-05" izz="0.00025642" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="file://$(find xarm_description)/meshes/ft_sensor/visual/ft_sensor_scaled.STL"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="${prefix}Silver" />
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="file://$(find xarm_description)/meshes/ft_sensor/collision/ft_sensor_scaled.STL"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="${prefix}Silver" />
+      </collision>
+    </link>    
+
+  </xacro:macro>
+</robot>

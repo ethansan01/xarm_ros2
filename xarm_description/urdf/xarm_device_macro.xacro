@@ -18,6 +18,7 @@
     create_attach_link:=true
     ros2_control_params:=''
     load_gazebo_plugin:=false 
+    add_ft_sensor:=false
     add_realsense_d435i:=false
     add_d435i_links:=true
     use_gazebo_camera:=false
@@ -211,6 +212,17 @@
       </xacro:unless>
     </xacro:unless>
 
+    <xacro:if value="${add_ft_sensor}">
+      <!-- (xarm) Load 6-axis force-torque sensor URDF -->
+      <xacro:include filename="$(find xarm_description)/urdf/ft_sensor/ft_sensor.urdf.xacro" />
+      <xacro:ft_sensor_urdf prefix="${prefix}" />
+      <joint name="${prefix}joint_ft_sensor" type="fixed">
+        <origin xyz="0 0 0.052" rpy="0 0 -1.5708" />
+        <parent link="${prefix}link${dof}" />
+        <child link="${prefix}link_ft_sensor" />
+      </joint>
+    </xacro:if>    
+
     <xacro:if value="${add_realsense_d435i}">
       <!-- (xarm) Load RealSense D435i URDF -->
       <xacro:include filename="$(find xarm_description)/urdf/camera/realsense_d435i.urdf.xacro" />
@@ -223,11 +235,21 @@
     <xacro:unless value="${add_realsense_d435i}">
       <link name="${prefix}link_eef"/>
     </xacro:unless>
-    <joint name="${prefix}joint_eef" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="${prefix}link${dof}" />
-      <child link="${prefix}link_eef" />
-    </joint>
+    <xacro:if value="${add_ft_sensor}">
+      <joint name="${prefix}joint_eef" type="fixed">
+        <origin xyz="0 0 0.008" rpy="0 0 1.5708" />
+        <parent link="${prefix}link_ft_sensor" />
+        <child link="${prefix}link_eef" />
+      </joint>
+    </xacro:if>
+    <xacro:unless value="${add_ft_sensor}">
+      <joint name="${prefix}joint_eef" type="fixed">
+        <origin xyz="0 0 0.008" rpy="0 0 0" />
+        <parent link="${prefix}link${dof}" />
+        <child link="${prefix}link_eef" />
+      </joint>
+    </xacro:unless>
+    
     
     <xacro:if value="${add_gripper}">
       <xacro:if value="${robot_type == 'lite'}">

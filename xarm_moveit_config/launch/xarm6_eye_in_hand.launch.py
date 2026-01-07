@@ -9,13 +9,16 @@ def generate_launch_description():
     # Launch arguments
     robot_ip = LaunchConfiguration('robot_ip')
     show_rviz = LaunchConfiguration('show_rviz')
+    add_ft_sensor = LaunchConfiguration('add_ft_sensor')
     run_octomap = LaunchConfiguration('run_octomap')
+    
 
     declared_arguments = [
         DeclareLaunchArgument('robot_ip', default_value='192.168.1.201', description='IP address of the robot'),
         DeclareLaunchArgument('show_rviz', default_value='false', description='Show RViz'),
+        DeclareLaunchArgument('add_ft_sensor', default_value='true', description='Add FT sensor'),
         DeclareLaunchArgument('run_octomap', default_value='false', description='Run Octomap'),
-    ]
+    ]   
 
     # Get xarm_moveit_config package share directory
     moveit_config_dir = get_package_share_directory('xarm_moveit_config')
@@ -27,6 +30,7 @@ def generate_launch_description():
         launch_arguments={
             'robot_ip': robot_ip,
             'show_rviz': show_rviz,
+            'add_ft_sensor': add_ft_sensor,
             'run_octomap': run_octomap
         }.items()
     )

@@ -34,6 +34,7 @@ def launch_setup(context, *args, **kwargs):
     add_gripper = LaunchConfiguration('add_gripper', default=False)
     add_vacuum_gripper = LaunchConfiguration('add_vacuum_gripper', default=False)
     add_bio_gripper = LaunchConfiguration('add_bio_gripper', default=False)
+    add_ft_sensor = LaunchConfiguration('add_ft_sensor', default=True)
     add_realsense_d435i = LaunchConfiguration('add_realsense_d435i', default=False)
     add_d435i_links = LaunchConfiguration('add_d435i_links', default=True)
     add_other_geometry = LaunchConfiguration('add_other_geometry', default=False)
@@ -76,6 +77,7 @@ def launch_setup(context, *args, **kwargs):
             add_gripper=add_gripper,
             add_vacuum_gripper=add_vacuum_gripper,
             add_bio_gripper=add_bio_gripper,
+            add_ft_sensor=add_ft_sensor,
             add_realsense_d435i=add_realsense_d435i,
             add_d435i_links=add_d435i_links,
             add_other_geometry=add_other_geometry,

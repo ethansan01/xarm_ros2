@@ -7,7 +7,7 @@
 # Author: Vinman <vinman.wen@ufactory.cc> <vinman.cub@gmail.com>
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
@@ -16,6 +16,11 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     robot_ip = LaunchConfiguration('robot_ip')
     hw_ns = LaunchConfiguration('hw_ns', default='xarm')
+    add_ft_sensor = LaunchConfiguration('add_ft_sensor', default='true')
+    
+    declared_arguments = [
+        DeclareLaunchArgument('add_ft_sensor', default_value='true', description='Add FT sensor'),
+    ]
     
     # robot moveit realmove launch
     # xarm_moveit_config/launch/_robot_moveit_realmove.launch.py
@@ -27,9 +32,10 @@ def generate_launch_description():
             'robot_type': 'xarm',
             'hw_ns': hw_ns,
             'no_gui_ctrl': 'false',
+            'add_ft_sensor': add_ft_sensor,
         }.items(),
     )
     
-    return LaunchDescription([
+    return LaunchDescription(declared_arguments + [
         robot_moveit_realmove_launch
     ])

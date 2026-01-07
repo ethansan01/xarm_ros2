@@ -19,6 +19,8 @@
   <xacro:arg name="ros2_control_plugin" default="uf_robot_hardware/UFRobotSystemHardware"/>
   <xacro:arg name="ros2_control_params" default=""/>
 
+  <xacro:arg name="add_ft_sensor" default="false"/>
+
   <xacro:arg name="add_realsense_d435i" default="false"/>
   <xacro:arg name="add_d435i_links" default="true"/>
   <xacro:arg name="use_gazebo_camera" default="false"/>
@@ -54,6 +56,7 @@
     add_bio_gripper="$(arg add_bio_gripper)" dof="$(arg dof)" 
     ros2_control_plugin="$(arg ros2_control_plugin)" robot_type="$(arg robot_type)" 
     load_gazebo_plugin="true" ros2_control_params="$(arg ros2_control_params)"
+    add_ft_sensor="$(arg add_ft_sensor)"
     add_realsense_d435i="$(arg add_realsense_d435i)" 
     add_d435i_links="$(arg add_d435i_links)" 
     add_other_geometry="$(arg add_other_geometry)" 
