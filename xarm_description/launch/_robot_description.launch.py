@@ -32,7 +32,7 @@ def launch_setup(context, *args, **kwargs):
     joint_states_remapping = LaunchConfiguration('joint_states_remapping', default='joint_states')
     xacro_file = LaunchConfiguration('xacro_file', default=PathJoinSubstitution([FindPackageShare('xarm_description'), 'urdf', 'xarm_device.urdf.xacro']))
 
-    add_ft_sensor=LaunchConfiguration('add_ft_sensor', default=True)
+    add_ft_sensor=LaunchConfiguration('add_ft_sensor', default=False)
     add_realsense_d435i = LaunchConfiguration('add_realsense_d435i', default=False)
     add_d435i_links = LaunchConfiguration('add_d435i_links', default=True)
     model1300 = LaunchConfiguration('model1300', default=False)

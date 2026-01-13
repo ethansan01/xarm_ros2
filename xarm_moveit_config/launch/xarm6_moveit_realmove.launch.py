@@ -16,10 +16,10 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     robot_ip = LaunchConfiguration('robot_ip')
     hw_ns = LaunchConfiguration('hw_ns', default='xarm')
-    add_ft_sensor = LaunchConfiguration('add_ft_sensor', default='true')
+    add_ft_sensor = LaunchConfiguration('add_ft_sensor', default='false')
     
     declared_arguments = [
-        DeclareLaunchArgument('add_ft_sensor', default_value='true', description='Add FT sensor'),
+        DeclareLaunchArgument('add_ft_sensor', default_value='false', description='Add FT sensor'),
     ]
     
     # robot moveit realmove launch

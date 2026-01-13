@@ -37,6 +37,7 @@ MoveItConfigsBuilder(
         add_vacuum_gripper=False
         add_bio_gripper=False,
         ros2_control_plugin='uf_robot_hardware/UFRobotSystemHardware'
+        add_ft_sensor=False
         add_realsense_d435i=False
         add_d435i_links=True
         model1300=False
@@ -90,6 +91,7 @@ DualMoveItConfigsBuilder(
         robot_sn_2=''
         kinematics_suffix_1=''
         kinematics_suffix_2=''
+        add_ft_sensor=False
         add_realsense_d435i_1=False
         add_realsense_d435i_2=False
         add_d435i_links_1=True
@@ -256,6 +258,7 @@ class MoveItConfigsBuilder(ParameterBuilder):
         add_gripper = get_param_str('add_gripper', False)
         add_vacuum_gripper = get_param_str('add_vacuum_gripper', False)
         add_bio_gripper = get_param_str('add_bio_gripper', False)
+        add_ft_sensor = get_param_str('add_ft_sensor', False)
         add_realsense_d435i = get_param_str('add_realsense_d435i', False)
         add_d435i_links = get_param_str('add_d435i_links', True)
         use_gazebo_camera = get_param_str('use_gazebo_camera', False)
@@ -303,6 +306,7 @@ class MoveItConfigsBuilder(ParameterBuilder):
             'add_gripper': add_gripper,
             'add_vacuum_gripper': add_vacuum_gripper,
             'add_bio_gripper': add_bio_gripper,
+            'add_ft_sensor': add_ft_sensor,
             'add_realsense_d435i': add_realsense_d435i,
             'add_d435i_links': add_d435i_links,
             'use_gazebo_camera': use_gazebo_camera,

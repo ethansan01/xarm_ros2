@@ -16,7 +16,7 @@ def generate_launch_description():
     declared_arguments = [
         DeclareLaunchArgument('robot_ip', default_value='192.168.1.201', description='IP address of the robot'),
         DeclareLaunchArgument('show_rviz', default_value='false', description='Show RViz'),
-        DeclareLaunchArgument('add_ft_sensor', default_value='true', description='Add FT sensor'),
+        DeclareLaunchArgument('add_ft_sensor', default_value='false', description='Add FT sensor'),
         DeclareLaunchArgument('run_octomap', default_value='false', description='Run Octomap'),
     ]   
 
@@ -47,7 +47,7 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         name='gripper_camera_tf',
-        arguments=['0.07', '-0.02', '0.012', '0.0', '0.0', '0.0', '1.0', 'link_eef', 'camera_link_base']
+        arguments=['0.07', '-0.02', '0.012', '0.0', '0.0', '0.0', '1.0', 'xarm_gripper_base_link', 'camera_link_base']
     )
 
     return LaunchDescription(declared_arguments + [
