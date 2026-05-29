@@ -10,11 +10,15 @@ def generate_launch_description():
     robot_ip = LaunchConfiguration('robot_ip')
     show_rviz = LaunchConfiguration('show_rviz')
     run_octomap = LaunchConfiguration('run_octomap')
+    attach_xyz = LaunchConfiguration('attach_xyz')
+    attach_rpy = LaunchConfiguration('attach_rpy')
 
     declared_arguments = [
         DeclareLaunchArgument('robot_ip', default_value='192.168.1.190', description='IP address of the robot'),
         DeclareLaunchArgument('show_rviz', default_value='false', description='Show RViz'),
         DeclareLaunchArgument('run_octomap', default_value='false', description='Run Octomap'),
+        DeclareLaunchArgument('attach_xyz', default_value='"0 0 0"', description='Mount translation (x y z) in meters'),
+        DeclareLaunchArgument('attach_rpy', default_value='"0 0.785398 0"', description='Mount rotation (roll pitch yaw) in radians'),
     ]
 
     # Get xarm_moveit_config package share directory
@@ -27,7 +31,9 @@ def generate_launch_description():
         launch_arguments={
             'robot_ip': robot_ip,
             'show_rviz': show_rviz,
-            'run_octomap': run_octomap
+            'run_octomap': run_octomap,
+            'attach_xyz': attach_xyz,
+            'attach_rpy': attach_rpy
         }.items()
     )
 
